@@ -3,6 +3,7 @@ const dialog = document.querySelector("dialog");
 const open = document.querySelector(".open");
 const submit = document.querySelector(".add");
 const books = document.querySelector(".books");
+const remove = document.querySelector(".remove");
 
 open.addEventListener("click", () => {
     dialog.showModal();
@@ -10,7 +11,7 @@ open.addEventListener("click", () => {
 
 submit.addEventListener("click", () => {
     addBookToLibrary();
-    displayBook();
+    displayBooks();
 });
 
 function Book(title, author, pages, isRead) {
@@ -19,13 +20,17 @@ function Book(title, author, pages, isRead) {
     this.pages = pages;
     this.isRead = isRead;
     this.info = function() {
-        if (isRead) {
-            return `${title} by ${author}, ${pages} pages, read`;
+        if (this.isRead) {
+            return `${this.title} by ${this.author}, ${this.pages} pages, read`;
         } else {
-            return `${title} by ${author}, ${pages} pages, not read yet`;
+            return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
         }
     }
 }
+
+Book.prototype.toggleRead = function() {
+    this.isRead = !this.isRead;
+};
 
 function addBookToLibrary() {
     const title = document.querySelector("#title").value;
@@ -36,13 +41,12 @@ function addBookToLibrary() {
     myLibrary.push(book);
 }
 
-function displayBook() {
+function displayBooks() {
     books.innerHTML = "";
 
     for (let i = 0; i < myLibrary.length; i++) {
         const div = document.createElement("div");
         div.classList.add("book");
-        div.id = `${i}`;
 
         const p = document.createElement("p");
         p.classList.add("info");
@@ -56,11 +60,19 @@ function displayBook() {
         const toggle = document.createElement("button");
         toggle.classList.add("toggle");
         toggle.textContent = "Toggle Read";
+        toggle.addEventListener("click", () => {
+            myLibrary[i].toggleRead();
+            displayBooks();
+        });
         buttons.appendChild(toggle);
 
         const remove = document.createElement("button");
         remove.classList.add("remove");
         remove.textContent = "Remove";
+        remove.addEventListener("click", () => {
+            myLibrary.splice(i, 1);
+            displayBooks();
+        });
         buttons.appendChild(remove);
 
         books.appendChild(div);
