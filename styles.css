@@ -1,5 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 25px;
+    margin: 0;
+}
+
+.add-book {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.open, .add {
+    margin: 25px;
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 15px;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+button:hover {
+    background-color: rgb(77, 129, 226);
+}
+
+.library {
+    display: flex;
+    justify-content: center;
+}
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.book {
+    background-color: #4978de;
+    height: 200px;
+    width: 200px;
+    border: 3px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info {
+    text-align: center;
+    color: white;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+}
+
+.toggle, .remove {
+    margin: 10px;
+    background-color: rgb(56, 55, 55);
+    color: white;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 15px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.toggle:hover, .remove:hover {
+    background-color: black;
 }
