@@ -14,23 +14,26 @@ submit.addEventListener("click", () => {
     displayBooks();
 });
 
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.info = function() {
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+
+    info() {
         if (this.isRead) {
             return `${this.title} by ${this.author}, ${this.pages} pages, read`;
         } else {
             return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
         }
     }
-}
 
-Book.prototype.toggleRead = function() {
-    this.isRead = !this.isRead;
-};
+    toggleRead() {
+        this.isRead = !this.isRead;
+    }
+}
 
 function addBookToLibrary() {
     const title = document.querySelector("#title").value;
